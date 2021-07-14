@@ -1,10 +1,10 @@
-#pragma once
+п»ї#pragma once
 
 template <typename T>
 class Matrix
 {
 public:
-	Matrix(); // конструктор по умолчанию - создает м-цу 2 на 3 из 1
+	Matrix(); // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ - СЃРѕР·РґР°РµС‚ Рј-С†Сѓ 2 РЅР° 3 РёР· 1
 	Matrix(int rows, int cols);
 	~Matrix();
 
@@ -24,6 +24,6 @@ private:
 	int m_rowsNum;
 	int m_colsNum;
 
-	void Create(int rows, int cols);// создает м-цу заданного размера из единиц
+	void Create(int rows, int cols);// СЃРѕР·РґР°РµС‚ Рј-С†Сѓ Р·Р°РґР°РЅРЅРѕРіРѕ СЂР°Р·РјРµСЂР° РёР· РµРґРёРЅРёС†
 	void Destroy();
 };

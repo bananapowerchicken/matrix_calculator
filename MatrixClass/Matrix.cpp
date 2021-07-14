@@ -1,4 +1,4 @@
-#include "Matrix.h"
+п»ї#include "Matrix.h"
 #include <iostream>
 
 template <typename T>
@@ -16,7 +16,7 @@ void Matrix<T>::Create(int rows, int cols)
 	{
 		for (int j = 0; j < m_colsNum; j++)
 		{
-			m_matrix[i][j] = 1;
+			m_matrix[i][j] = 1; // May be zero will be more applicable? Anyway there is minor change.
 		}
 	}
 }
@@ -28,6 +28,7 @@ void Matrix<T>::Destroy()
 	{
 		delete[] m_matrix[i];
 	}
+	// You didn't delete matrix, did you?
 }
 
 template <typename T>
@@ -35,20 +36,22 @@ Matrix<T>::Matrix()
 {
 	Create(2, 3);
 
-	//std::cout << "Автоматически создана матрица вида: " << "\n";
+	//std::cout << "РђРІС‚РѕРјР°С‚РёС‡РµСЃРєРё СЃРѕР·РґР°РЅР° РјР°С‚СЂРёС†Р° РІРёРґР°: " << "\n";
 	//Show();
 }
 
 template <typename T>
 Matrix<T>::Matrix(int rows, int cols) : m_rowsNum(rows), m_colsNum(cols)
 {
-	m_matrix = new T* [m_rowsNum]; // был int
+	// Here you can reuse some methods (like Create).
+
+	m_matrix = new T* [m_rowsNum]; // Р±С‹Р» int
 	for (int i = 0; i < m_rowsNum; i++)
 	{
-		m_matrix[i] = new T[m_colsNum]; // был int
+		m_matrix[i] = new T[m_colsNum]; // Р±С‹Р» int
 	}
 
-	std::cout << "Введите желаемую матрицу" << "\n";
+	std::cout << "Enter matrix" << "\n";
 
 	for (int i = 0; i < m_rowsNum; i++)
 	{
@@ -58,8 +61,9 @@ Matrix<T>::Matrix(int rows, int cols) : m_rowsNum(rows), m_colsNum(cols)
 		}	
 	}
 
+	// May be it will be better to remove this block o replace it by "Show" method?
 	// DEBUG
-	std::cout << "Матрица успешно создана " << "\n";
+	std::cout << "Matrix generated. Success." << "\n";
 	for (int i = 0; i < m_rowsNum; i++)
 	{
 		for (int j = 0; j < m_colsNum; j++)
@@ -75,6 +79,7 @@ template <typename T>
 Matrix<T>::~Matrix()
 {
 	Destroy();
+	//Your destructor just call "Destroy" method. Why don't you use only destructor instead of this method?
 }
 
 template <typename T>
@@ -84,7 +89,7 @@ void Matrix<T>::Show()
 	{
 		for (int j = 0; j < m_colsNum; j++)
 		{
-			std::cout << m_matrix[i][j] << " ";
+			std::cout << m_matrix[i][j] << " "; // try to use "\t" instead of spacebar.
 		}
 		std::cout << "\n";
 	}
@@ -94,8 +99,8 @@ void Matrix<T>::Show()
 template <typename T>
 void Matrix<T>::Transpose()
 {
-	// теперь тут требует ввести желаемую матрицу - это некруто и неудобно
-	// мжно, конечно, добавить конструктор с заполнением одним числом
+	// С‚РµРїРµСЂСЊ С‚СѓС‚ С‚СЂРµР±СѓРµС‚ РІРІРµСЃС‚Рё Р¶РµР»Р°РµРјСѓСЋ РјР°С‚СЂРёС†Сѓ - СЌС‚Рѕ РЅРµРєСЂСѓС‚Рѕ Рё РЅРµСѓРґРѕР±РЅРѕ
+	// РјР¶РЅРѕ, РєРѕРЅРµС‡РЅРѕ, РґРѕР±Р°РІРёС‚СЊ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ СЃ Р·Р°РїРѕР»РЅРµРЅРёРµРј РѕРґРЅРёРј С‡РёСЃР»РѕРј
 	Matrix transp;//(m_colsNum, m_rowsNum);		
 	transp.Create(m_colsNum, m_rowsNum);
 	
@@ -107,11 +112,13 @@ void Matrix<T>::Transpose()
 		}		
 	}
 
+	// Why don't you use "Destroy" or destructor?
 	for (int i = 0; i < m_rowsNum; i++)
 	{
 		delete[] m_matrix[i];
 	}
 
+	// Here you can use "=" operator or copy constructor. If you use copy constructor destructor call will be unnecessary (and code will became simplier) рџ‰.
 	m_colsNum = transp.m_colsNum; 
 	m_rowsNum = transp.m_rowsNum; 
 	Create(transp.m_rowsNum, transp.m_colsNum);
@@ -176,6 +183,7 @@ Matrix<T>& Matrix<T>::operator-(Matrix<T>& secondMatrix)
 	}
 }
 
+// May be here will be better to use copy constructor. Also it will be more intuitively.
 template <typename T>
 Matrix<T>& Matrix<T>::operator=(Matrix<T>& equalMatrix)
 {
@@ -194,6 +202,7 @@ template <typename T>
 Matrix<T>& Matrix<T>::operator*(Matrix<T>& secondMatrix)
 {
 	Matrix res(m_rowsNum, secondMatrix.m_colsNum);
+	// Are you using "show" for the debug purposes?
 	this->Show();
 	secondMatrix.Show();
 
