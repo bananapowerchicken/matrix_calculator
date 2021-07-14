@@ -1,0 +1,13 @@
+﻿  Matrix.cpp
+  main.cpp
+  templates.cpp
+  Создание кода...
+D:\code\matrix_class\MatrixClass\MatrixClass\Matrix.cpp(156): warning C4715: Matrix<int>::operator+: значение возвращается не при всех путях выполнения
+D:\code\matrix_class\MatrixClass\MatrixClass\Matrix.cpp(223): warning C4715: Matrix<int>::operator*: значение возвращается не при всех путях выполнения
+D:\code\matrix_class\MatrixClass\MatrixClass\Matrix.cpp(177): warning C4715: Matrix<int>::operator-: значение возвращается не при всех путях выполнения
+D:\code\matrix_class\MatrixClass\MatrixClass\Matrix.cpp(216): warning C4172: возвращение адреса локальной или временной переменной : res
+D:\code\matrix_class\MatrixClass\MatrixClass\Matrix.cpp(156): warning C4715: Matrix<double>::operator+: значение возвращается не при всех путях выполнения
+D:\code\matrix_class\MatrixClass\MatrixClass\Matrix.cpp(177): warning C4715: Matrix<double>::operator-: значение возвращается не при всех путях выполнения
+D:\code\matrix_class\MatrixClass\MatrixClass\Matrix.cpp(223): warning C4715: Matrix<double>::operator*: значение возвращается не при всех путях выполнения
+D:\code\matrix_class\MatrixClass\MatrixClass\Matrix.cpp(216): warning C4172: возвращение адреса локальной или временной переменной : res
+  MatrixClass.vcxproj -> D:\code\matrix_class\MatrixClass\Debug\MatrixClass.exe
